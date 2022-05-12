@@ -19,6 +19,30 @@ const createPost = async (req, res) => {
         console.log(e);
         res.send(getGeneralResponse(null, 'Could not add post', false));
     }
+};
+
+const getUserPosts = async (req, res) => {
+    try {
+        const page = req.params.page;
+        const userId = jwtUtils.decodeJwt(req.headers.authorization).data;
+        res.send(getGeneralResponse(await Post
+            .find({ user_id: userId })
+            .sort({ createdAt: 'desc' })
+            .limit(10)
+            .skip(10 * (page - 1)), 'User posts successfully fetched', true));
+    } catch (e) {
+        console.log(e);
+        res.send(null, 'There was some error fetching your posts, please try again later', false);
+    }
+};
+
+const deletePost = async (req, res) => {
+    try {
+        res.send(getGeneralResponse(await Post.deleteOne({ _id: req.params.id }), 'Post deleted', true));
+    } catch (e) {
+        console.log(e);
+        res.send(getGeneralResponse(null, 'Error deleting this post', false));
+    };
 }
 
-module.exports = { createPost };
+module.exports = { createPost, getUserPosts, deletePost };

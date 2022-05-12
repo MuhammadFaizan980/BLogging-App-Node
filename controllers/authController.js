@@ -18,7 +18,7 @@ const register = async (req, res) => {
         console.log(e);
         res.send(getGeneralResponse(null, 'Email might already be taken, please try another one', false));
     }
-}
+};
 
 const login = async (req, res) => {
     try {
@@ -41,6 +41,6 @@ const login = async (req, res) => {
         console.log(e);
         res.send(getGeneralResponse(null, e.message, false));
     }
-}
+};
 
 module.exports = { register, login };
