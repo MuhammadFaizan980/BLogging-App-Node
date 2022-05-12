@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express(); // initializing the express app
 app.use(express.json());
+
 // importing routers
 const authRouter = require('./routes/authRouter');
 const postRouter = require('./routes/postRouter');
