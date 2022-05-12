@@ -1,6 +1,6 @@
 const User = require('../models/user');
 const encryptionUtils = require('../utils/encryptionUtils');
-const jwtUtils = require('../utils/jwtUtils');
+const { appendJwt } = require('../utils/jwtUtils');
 const { getGeneralResponse } = require('../utils/responseUtils');
 
 const register = async (req, res) => {
@@ -13,7 +13,7 @@ const register = async (req, res) => {
             password: encryptionUtils.encryptString(req.body.password),
         }).save();
 
-        res.send(getGeneralResponse(jwtUtils.appendJwt(response, response.id), 'Registration successful', true));
+        res.send(getGeneralResponse(appendJwt(response, response.id), 'Registration successful', true));
     } catch (e) {
         console.log(e);
         res.send(getGeneralResponse(null, 'Email might already be taken, please try another one', false));
@@ -23,7 +23,7 @@ const register = async (req, res) => {
 const login = async (req, res) => {
     try {
         const response = await User.find({ email: req.body.email });
-        const configuredObject = getGeneralResponse(response.length == 0 ? null : jwtUtils.appendJwt(response[0], response[0].id),
+        const configuredObject = getGeneralResponse(response.length == 0 ? null : appendJwt(response[0], response[0].id),
             response.length == 0 ? 'Invalid email' : 'Login success', response.length != 0);
 
         if (configuredObject.success) {

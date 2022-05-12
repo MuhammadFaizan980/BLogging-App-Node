@@ -16,4 +16,8 @@ const createDirectory = (dirName) => {
     }
 }
 
-module.exports = { savePng, createDirectory, getImage };
+const deletePng = (id) => {
+    fs.unlinkSync(`./images/${id}.png`);
+}
+
+module.exports = { savePng, createDirectory, getImage, deletePng };
