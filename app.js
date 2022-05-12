@@ -7,6 +7,7 @@ app.use(express.json());
 const authRouter = require('./routes/authRouter');
 const postRouter = require('./routes/postRouter');
 const profileRouter = require('./routes/userRouter');
+const imageRouter = require('./routes/imageRouter');
 
 mongoose.connect('mongodb+srv://Markhor980:123456abc@cluster0.qzjg3.mongodb.net/blog_app?retryWrites=true&w=majority')
     .then((res) => {
@@ -22,3 +23,4 @@ mongoose.connect('mongodb+srv://Markhor980:123456abc@cluster0.qzjg3.mongodb.net/
 app.use('/auth', authRouter);
 app.use('/post', postRouter);
 app.use('/user', profileRouter);
+app.use('/image', imageRouter);

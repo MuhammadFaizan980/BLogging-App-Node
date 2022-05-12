@@ -1,5 +1,9 @@
 const fs = require('fs');
 
+const getImage = (id) => {
+    return fs.readFileSync(`./images/${id}.png`);
+}
+
 const savePng = (data, userId) => {
     const buffer = new Buffer.from(data, 'base64');
     createDirectory('images');
@@ -12,4 +16,4 @@ const createDirectory = (dirName) => {
     }
 }
 
-module.exports = { savePng, createDirectory };
+module.exports = { savePng, createDirectory, getImage };
