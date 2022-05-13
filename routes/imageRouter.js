@@ -1,9 +1,6 @@
 const express = require('express');
 const imageRouter = new express.Router();
 const { getImage } = require('../utils/fsUtils');
-const { checkTokenVaidity } = require('../utils/jwtUtils');
-
-imageRouter.use(checkTokenVaidity);
 
 imageRouter.get('/:id', (req, res) => {
     res.contentType('image/png');
