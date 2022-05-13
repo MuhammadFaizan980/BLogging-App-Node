@@ -14,4 +14,15 @@ const updateUserImage = (req, res) => {
     }
 };
 
-module.exports = { updateUserImage };
+const updateUserName = async (req, res) => {
+    try {
+        const userId = decodeJwt(req.headers.authorization).data;
+        const response = await User.updateOne({ _id: userId }, { name: req.body.name, });
+        res.send(getGeneralResponse(response, 'User info updated', true));
+    } catch (e) {
+        console.log(e);
+        res.send(getGeneralResponse(null, 'Could not update user info due to an error', false));
+    }
+};
+
+module.exports = { updateUserImage, updateUserName };

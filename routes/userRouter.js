@@ -12,4 +12,6 @@ userRouter.use(jwtUtils.checkTokenVaidity);
 
 userRouter.post('/update-image', userController.updateUserImage);
 
+userRouter.post('/update-user-name', userController.updateUserName);
+
 module.exports = userRouter;
