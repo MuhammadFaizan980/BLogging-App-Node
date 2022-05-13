@@ -25,4 +25,15 @@ const updateUserName = async (req, res) => {
     }
 };
 
-module.exports = { updateUserImage, updateUserName };
+const getUserInfo = async (req, res) => {
+    try {
+        const userId = decodeJwt(req.headers.authorization).data
+        const response = await User.findOne({ _id: userId });
+        res.send(getGeneralResponse(null, response, true));
+    } catch (e) {
+        console.log(e);
+        res.send(getGeneralResponse(null, 'An error occured fetching your details', false));
+    }
+};
+
+module.exports = { updateUserImage, updateUserName, getUserInfo };
