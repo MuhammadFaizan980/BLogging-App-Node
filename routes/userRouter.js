@@ -1,5 +1,5 @@
 const express = require('express');
-const userRouter = express.Router();
+const userRouter = new express.Router();
 const jwtUtils = require('../utils/jwtUtils');
 const userController = require('../controllers/userController');
 

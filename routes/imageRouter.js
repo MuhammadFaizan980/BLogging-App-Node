@@ -1,5 +1,5 @@
 const express = require('express');
-const imageRouter = express.Router();
+const imageRouter = new express.Router();
 const { getImage } = require('../utils/fsUtils');
 const { checkTokenVaidity } = require('../utils/jwtUtils');
 
