@@ -3,7 +3,6 @@ const firebaseRouter = express.Router();
 const { getGeneralResponse } = require('../utils/responseUtils');
 const { admin } = require('../utils/firebaseUtils');
 
-
 const notification_options = {
     priority: "high",
     timeToLive: 60 * 60 * 24
@@ -16,7 +15,7 @@ firebaseRouter.post('/send-notification', async (req, res) => {
 
     try {
         await admin.messaging().sendToDevice(registrationToken, message, options);
-        res.send(getGeneralResponse(null, 'Notification send successfully!', true));
+        res.send(getGeneralResponse(null, 'Notification sent successfully!', true));
 
     } catch (e) {
         console.log(error);
