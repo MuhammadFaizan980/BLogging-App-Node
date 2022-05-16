@@ -29,7 +29,7 @@ const getUserInfo = async (req, res) => {
     try {
         const userId = decodeJwt(req.headers.authorization).data
         const response = await User.findOne({ _id: userId });
-        res.send(getGeneralResponse(null, response, true));
+        res.send(getGeneralResponse(response, 'Profile data successfully fetched', true));
     } catch (e) {
         console.log(e);
         res.send(getGeneralResponse(null, 'An error occured fetching your details', false));
