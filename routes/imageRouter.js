@@ -1,5 +1,5 @@
 const express = require('express');
-const imageRouter = new express.Router();
+const imageRouter = express.Router();
 const { getImage } = require('../utils/fsUtils');
 
 imageRouter.get('/:id', (req, res) => {
